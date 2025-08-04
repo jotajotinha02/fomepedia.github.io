@@ -1,0 +1,78 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8">
+  <title>Registro de Vendas</title>
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      padding: 30px;
+      background-color: #f4f4f4;
+    }
+    h1 {
+      color: #333;
+    }
+    input, button {
+      padding: 10px;
+      margin: 5px 0;
+    }
+    table {
+      width: 100%;
+      border-collapse: collapse;
+      margin-top: 20px;
+    }
+    th, td {
+      border: 1px solid #ccc;
+      padding: 10px;
+      text-align: left;
+    }
+    th {
+      background-color: #eee;
+    }
+  </style>
+</head>
+<body>
+  <h1>Registro de Vendas</h1>
+  <form id="formVenda">
+    <label for="produto">Produto:</label><br>
+    <input type="text" id="produto" required><br>
+    
+    <label for="quantidade">Quantidade Vendida:</label><br>
+    <input type="number" id="quantidade" required><br>
+    
+    <button type="submit">Registrar Venda</button>
+  </form>
+
+  <h2>Vendas de Hoje</h2>
+  <table id="tabelaVendas">
+    <thead>
+      <tr>
+        <th>Produto</th>
+        <th>Quantidade</th>
+        <th>Data</th>
+      </tr>
+    </thead>
+    <tbody></tbody>
+  </table>
+
+  <script>
+    const form = document.getElementById('formVenda');
+    const tabela = document.getElementById('tabelaVendas').getElementsByTagName('tbody')[0];
+
+    form.addEventListener('submit', function(event) {
+      event.preventDefault();
+
+      const produto = document.getElementById('produto').value;
+      const quantidade = document.getElementById('quantidade').value;
+      const data = new Date().toLocaleDateString('pt-BR');
+
+      const linha = tabela.insertRow();
+      linha.insertCell(0).textContent = produto;
+      linha.insertCell(1).textContent = quantidade;
+      linha.insertCell(2).textContent = data;
+
+      form.reset();
+    });
+  </script>
+</body>
+</html>
